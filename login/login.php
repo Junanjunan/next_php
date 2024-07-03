@@ -42,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (password_verify($mb_password_plain, $mb_password_hashed)) {
                 $_SESSION['mb_id'] = $mb_id;
-                echo "Login successful";
+                echo "Login successful, session_id: ";
+                echo session_id();
                 // Redirect to a protected page
                 // header("Location: protected_page.php");
             } else {
