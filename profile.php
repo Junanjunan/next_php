@@ -4,8 +4,11 @@ session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['mb_id'])) {
     // User is not logged in, redirect to login page
-    header("Location: /login");
-    exit;
+    echo json_encode([
+        'success' => false,
+        'message' => 'There is no mb_id in session',
+    ]);
+    return;
 }
 
 // Get the mb_id from the URL
@@ -13,10 +16,16 @@ $mb_id = $_GET['mb_id'];
 
 // Check if the logged-in user matches the requested profile
 if ($_SESSION['mb_id'] !== $mb_id) {
-    echo "Access denied. You can only view your own profile.";
-    exit;
+    echo json_encode([
+        'success' => false,
+        'message' => "Access denied. You can only view your own profile.",
+    ]);
+    return;
 }
 
-// User is logged in and the profile matches, display the profile page content
-echo "Welcome to your profile page, <h2>" . htmlspecialchars($mb_id) . "</h2>";
+echo json_encode([
+    'success' => true,
+    'mb_id' => $_SESSION['mb_id'],
+    'cookie' => $_COOKIE['PHPSESSID'] ?? 'No cookie',
+]);
 ?>
