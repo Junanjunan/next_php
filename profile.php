@@ -18,5 +18,5 @@ if ($_SESSION['mb_id'] !== $mb_id) {
 }
 
 // User is logged in and the profile matches, display the profile page content
-echo "Welcome to your profile page, " . htmlspecialchars($mb_id) . "!";
+echo "Welcome to your profile page, <h2>" . htmlspecialchars($mb_id) . "</h2>";
 ?>
