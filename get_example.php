@@ -2,11 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Allow CORS
-header("Access-Control-Allow-Origin: http://localhost:3000");
-header("Access-Control-Allow-Credentials: true");
-header("Content-Type: application/json");
-
 $response = [
     'success' => true,
     'message' => 'GET request received successfully~!',
